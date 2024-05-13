@@ -1,0 +1,35 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      # Log in to Amazon ECR
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 291123014449.dkr.ecr.us-east-1.amazonaws.com
+
+  build:
+    commands:
+      # Build the frontend Docker image
+      - cd frontend
+      - docker build -t frontend-repo:latest .
+      # Tag the frontend Docker image
+      - docker tag frontend-repo:latest 291123014449.dkr.ecr.us-east-1.amazonaws.com/frontend-repo:latest
+      # Push the frontend Docker image to Amazon ECR
+      - docker push 291123014449.dkr.ecr.us-east-1.amazonaws.com/frontend-repo:latest
+
+      # Build the backend Docker image
+      - cd ../backend
+      - docker build -t backend-repo:latest .
+      # Tag the backend Docker image
+      - docker tag backend-repo:latest 291123014449.dkr.ecr.us-east-1.amazonaws.com/backend-repo:latest
+      # Push the backend Docker image to Amazon ECR
+      - docker push 291123014449.dkr.ecr.us-east-1.amazonaws.com/backend-repo:latest
+
+  # post_build:
+  #   commands:
+  #     # Authenticate with EKS cluster (if needed)
+  #     # - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
+
+  #     # Apply Kubernetes manifests for frontend deployment
+  #     - kubectl apply -f ../frontend/kubernetes/frontend-deployment.yaml
+  #     # Apply Kubernetes manifests for backend deployment
+  #     - kubectl apply -f backend/kubernetes/backend-deployment.yaml
