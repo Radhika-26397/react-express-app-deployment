@@ -10,6 +10,8 @@ COPY package*.json ./
 
 # Install dependencies
 
+RUN npm install -g npm@latest
+
 RUN npm install react react-dom
 
 
