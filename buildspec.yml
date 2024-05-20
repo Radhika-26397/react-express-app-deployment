@@ -8,6 +8,7 @@ phases:
 
   build:
     commands:
+      - ll
       # Build the frontend Docker image
       - cd frontend
       - docker build -t frontend-repo:latest .
