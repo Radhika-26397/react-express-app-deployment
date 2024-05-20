@@ -12,11 +12,6 @@ COPY package*.json ./
 
 RUN npm install -g npm@latest
 
-RUN nvm install 18.17.0
-
-RUN nvm use 18.17.0
-
-
 RUN npm install 
 
 
