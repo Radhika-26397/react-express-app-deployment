@@ -1,29 +1,25 @@
-# Stage 1: Install dependencies and build the React application
-FROM node:14-alpine as build
+# Use an official Node.js runtime as the base image
+FROM node:14-alpine
 
-# Set working directory
+# Set the working directory in the container
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
 # Install dependencies
-RUN npm install --production
 
-# Copy the rest of the application code
+RUN npm install react react-dom
+
+
+# Copy the remaining project files to the working directory
 COPY . .
 
 # Build the React app
 RUN npm run build
 
-# Stage 2: Serve the React app with a lightweight HTTP server
-FROM nginx:alpine
+# Expose port 3000 to the outside world
+EXPOSE 3000
 
-# Copy the build output from the previous stage to Nginx server's directory
-COPY --from=build /app/build /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
-
-# Command to start the Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+# Command to run the application
+CMD ["npm", "start"]
