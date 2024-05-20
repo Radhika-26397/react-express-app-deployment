@@ -1,5 +1,5 @@
 # Use a base image with Node.js
-FROM node:14-alpine
+FROM 291123014449.dkr.ecr.us-east-1.amazonaws.com/backend-repo:latest
 
 # Set working directory
 WORKDIR /app
