@@ -23,6 +23,7 @@ phases:
 
       # Build the backend Docker image
       - cd ../backend
+      - ls
       - docker build -t backend-repo:latest .
       # Tag the backend Docker image
       - docker tag backend-repo:latest 291123014449.dkr.ecr.us-east-1.amazonaws.com/backend-repo:latest
