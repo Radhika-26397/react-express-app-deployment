@@ -6,13 +6,13 @@ FROM 291123014449.dkr.ecr.us-east-1.amazonaws.com/frontend-repo:latest
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# COPY package*.json ./
 
 # Install dependencies
 
-RUN npm install -g npm@latest
+# RUN npm install -g npm@latest
 
-RUN npm install 
+# RUN npm install 
 
 
 # Copy the remaining project files to the working directory
