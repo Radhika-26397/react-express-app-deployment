@@ -12,7 +12,7 @@ COPY package*.json ./
 
 RUN npm install -g npm@latest
 
-RUN npm install react react-dom
+RUN npm install 
 
 
 # Copy the remaining project files to the working directory
