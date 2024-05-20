@@ -13,6 +13,7 @@ phases:
       - cd frontend
       - ls
       - npm cache clean --force
+      - node -v
       - docker build -t frontend-repo:latest .
       # Tag the frontend Docker image
       - docker tag frontend-repo:latest 291123014449.dkr.ecr.us-east-1.amazonaws.com/frontend-repo:latest
