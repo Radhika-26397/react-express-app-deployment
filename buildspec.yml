@@ -8,9 +8,10 @@ phases:
 
   build:
     commands:
-      - ll
+      - ls
       # Build the frontend Docker image
       - cd frontend
+      - ls
       - docker build -t frontend-repo:latest .
       # Tag the frontend Docker image
       - docker tag frontend-repo:latest 291123014449.dkr.ecr.us-east-1.amazonaws.com/frontend-repo:latest
